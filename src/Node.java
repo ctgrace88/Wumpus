@@ -21,4 +21,12 @@ public class Node {
     public boolean isGold() {
         return gold;
     }
+
+    public void setWumpus(){
+        wumpus = true;
+    }
+
+    public void setGold(){
+        gold = true;
+    }
 }
