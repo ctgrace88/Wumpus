@@ -4,7 +4,7 @@ public class Map {
 
     }
 
-    // Build map of inputed size
+    // Build map of specified size
     public Node[][] buildMap(int size){
         Node[][] map = new Node[size][size];
 
