@@ -5,6 +5,7 @@ public class Agent {
     private boolean arrow;      // True if Agent still has the arrow
     private boolean gold;       // True if Agent is carrying the gold
     private Node[][] known;     // Agents knowledge of the map
+    private int score;
 
     public Agent(int x, int y){
         xCoord = x;
@@ -14,11 +15,15 @@ public class Agent {
         gold = false;
     }
 
-    public void setX(int newX){
+    public void solve(Node[][] map){
+        checkEnvironment(map);
+    }
+
+    private void setX(int newX){
         xCoord = newX;
     }
 
-    public void setY(int newY){
+    private void setY(int newY){
         yCoord = newY;
     }
 
@@ -44,8 +49,8 @@ public class Agent {
         else if (direction == 'E'){
             direction = 'N';
         }
-        else if (direction == 'E'){
-            direction = 'W';
+        else if (direction == 'S'){
+            direction = 'E';
         }
         else{   //direction == 'W'
             direction = 'S';
@@ -65,5 +70,67 @@ public class Agent {
         else{   //direction == 'W'
             direction = 'N';
         }
+    }
+
+    private void checkEnvironment(Node[][] map){
+        boolean stench = false;
+        boolean breeze = false;
+
+        if (map[yCoord][xCoord].isGold()){
+
+        }
+
+        // Check North
+        if(yCoord-1 >= 0){
+            if (map[yCoord-1][xCoord].isPit()){
+
+            }
+            if (map[yCoord-1][xCoord].isWumpus()){
+
+            }
+        }
+        // Check East
+        if(xCoord+1 < map.length){
+            if (map[yCoord][xCoord+1].isPit()){
+
+            }
+            if (map[yCoord][xCoord+1].isWumpus()){
+
+            }
+        }
+        // Check South
+        if(yCoord+1 < map.length){
+            if (map[yCoord+1][xCoord].isPit()){
+
+            }
+            if (map[yCoord+1][xCoord].isWumpus()){
+
+            }
+        }
+        // Check West
+        if(xCoord-1 > 0){
+            if (map[yCoord][xCoord-1].isPit()){
+
+            }
+            if (map[yCoord][xCoord-1].isWumpus()){
+
+            }
+        }
+    }
+
+    private void getGold(){
+        gold = true;
+    }
+
+    private void shoot(){
+        arrow = false;
+    }
+
+    private void changeScore(int add){
+        score += add;
+    }
+
+    private int getScore(){
+        return score;
     }
 }
