@@ -48,9 +48,9 @@ public class Map {
             row = rand.nextInt(size-1);
             col = rand.nextInt(size-1);
 
-            // Place wumpus if node is valid, else try again
+            // Place wumpus if node is valid, else try again (wumpus cannot be in a pit)
             if (!map[row][col].isPit() && row != size-1 && col != 0){
-                map[row][col].setWumpus();
+                map[row][col].setWumpus(true);
                 wumpusPlaced = true;
             }
         }
@@ -69,9 +69,9 @@ public class Map {
             row = rand.nextInt(size-1);
             col = rand.nextInt(size-1);
 
-            // Place wumpus if node is valid, else try again
-            if (!map[row][col].isPit() && row != size-1 && col != 0){
-                map[row][col].setGold();
+            // Place gold if node is valid, else try again (gold can be in a pit)
+            if (row != size-1 && col != 0){
+                map[row][col].setGold(true);
                 goldPlaced = true;
             }
         }

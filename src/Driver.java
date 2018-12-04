@@ -5,8 +5,8 @@ public class Driver {
         Node[][] map4;
 
         map4 = newMap.buildMap(4);
-        agent4 = new Agent(0, map4.length-1);
-        agent4.solve(map4);
+        agent4 = new Agent(0, map4.length-1, map4);
+        agent4.solve();
 
 
         //map = newMap.buildMap(5);
