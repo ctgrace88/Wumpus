@@ -19,6 +19,57 @@ public class Agent {
         checkEnvironment(map);
     }
 
+    // Agent checks and updates it's map of the environment
+    private void checkEnvironment(Node[][] map){
+        // Sets agents current node to visited.
+        known[yCoord][xCoord] = new Node(false, false, false, true);
+
+        // Sets agents node to glitter if gold is in it.
+        if (map[yCoord][xCoord].isGold()){
+            known[yCoord][xCoord].setGlitter();
+        }
+
+        // Checks all adjacent nodes. Sets agents node to breeze if a pit is adjacent. Sets agents node to stench if wumpus is adjacent.
+        // Check North
+        if(yCoord-1 >= 0){
+            if (map[yCoord-1][xCoord].isPit()){
+                known[yCoord][xCoord].setBreeze();
+            }
+            if (map[yCoord-1][xCoord].isWumpus()){
+                known[yCoord][xCoord].setStench();
+            }
+        }
+        // Check East
+        if(xCoord+1 < map.length){
+            if (map[yCoord][xCoord+1].isPit()){
+                known[yCoord][xCoord].setBreeze();
+            }
+            if (map[yCoord][xCoord+1].isWumpus()){
+                known[yCoord][xCoord].setStench();
+            }
+        }
+        // Check South
+        if(yCoord+1 < map.length){
+            if (map[yCoord+1][xCoord].isPit()){
+                known[yCoord][xCoord].setBreeze();            }
+            if (map[yCoord+1][xCoord].isWumpus()){
+                known[yCoord][xCoord].setStench();
+            }
+        }
+        // Check West
+        if(xCoord-1 > 0){
+            if (map[yCoord][xCoord-1].isPit()){
+                known[yCoord][xCoord].setBreeze();            }
+            if (map[yCoord][xCoord-1].isWumpus()){
+                known[yCoord][xCoord].setStench();
+            }
+        }
+    }
+
+    private void decision(Node[][] map){
+
+    }
+
     private void setX(int newX){
         xCoord = newX;
     }
@@ -72,52 +123,6 @@ public class Agent {
         }
     }
 
-    private void checkEnvironment(Node[][] map){
-        boolean stench = false;
-        boolean breeze = false;
-
-        if (map[yCoord][xCoord].isGold()){
-
-        }
-
-        // Check North
-        if(yCoord-1 >= 0){
-            if (map[yCoord-1][xCoord].isPit()){
-
-            }
-            if (map[yCoord-1][xCoord].isWumpus()){
-
-            }
-        }
-        // Check East
-        if(xCoord+1 < map.length){
-            if (map[yCoord][xCoord+1].isPit()){
-
-            }
-            if (map[yCoord][xCoord+1].isWumpus()){
-
-            }
-        }
-        // Check South
-        if(yCoord+1 < map.length){
-            if (map[yCoord+1][xCoord].isPit()){
-
-            }
-            if (map[yCoord+1][xCoord].isWumpus()){
-
-            }
-        }
-        // Check West
-        if(xCoord-1 > 0){
-            if (map[yCoord][xCoord-1].isPit()){
-
-            }
-            if (map[yCoord][xCoord-1].isWumpus()){
-
-            }
-        }
-    }
-
     private void getGold(){
         gold = true;
     }
@@ -132,5 +137,9 @@ public class Agent {
 
     private int getScore(){
         return score;
+    }
+
+    private void initKnown(){
+        
     }
 }
