@@ -41,8 +41,8 @@ public class Agent {
      */
     public void solve()
     {
-        // While agent is alive
-        while (!dead)
+        // While agent is alive or does not have the gold
+        while (!dead || gold)
         {
             checkEnvironment();
             decision();
