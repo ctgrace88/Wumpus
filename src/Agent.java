@@ -32,6 +32,7 @@ public class Agent {
         dead = false;
         int worldSize = map.length;
         known = new Node[worldSize][worldSize];
+        fillKnown();
     }
 
     /**
@@ -58,7 +59,7 @@ public class Agent {
     {
         // Sets agents current node to visited.
         //known[yCoord][xCoord] = new Node(false, false, false, true);
-        known[yCoord][xCoord].setVisited();
+        known[xCoord][yCoord].setVisited();
 
         // Sets agents node to glitter if gold is in it.
         if (map[yCoord][xCoord].isGold())
@@ -174,6 +175,23 @@ public class Agent {
         /////////*****************/////////////**************//////////********
         // This is where I left off
         ///////////***************************///////***************//////////**
+    }
+
+    /**
+     * Method to fill the knowledge base representation with Node instances
+     */
+    public void fillKnown()
+    {
+        //loop through the rows
+        for (int row = 0; row < map.length; row++)
+        {
+            //loop through the columns
+            for (int col = 0; col < map[row].length; col++)
+            {
+                //place a Node instance in the position
+                known[row][col] = new Node(false, false, false, false);
+            }
+        }
     }
 
     /**
