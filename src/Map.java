@@ -48,6 +48,117 @@ public class Map {
     }
 
     /**
+     * Method to mark the Pits' adjacent positions with a breeze
+     * @param world
+     */
+    public void setBreeze(Node[][] world)
+    {
+        //loop through the rows
+        for (int row = 0; row < world.length; row++)
+        {
+            //loop through the columns
+            for (int col = 0; col < world[row].length; col++)
+            {
+                //the position is a Pit
+                if (world[row][col].isPit())
+                {
+                    /* mark the (viable) adjacent Nodes with a Breeze */
+                    //North
+                    if (row > 0)
+                    {
+                        world[row-1][col].setBreeze();
+                    }
+
+                    //East
+                    if (col < world.length - 1)
+                    {
+                        world[row][col+1].setBreeze();
+                    }
+
+                    //South
+                    if (row < world.length - 1)
+                    {
+                        world[row+1][col].setBreeze();
+                    }
+
+                    //West
+                    if (col > 0)
+                    {
+                        world[row][col-1].setBreeze();
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Method to mark the Wumpus' position and adjacent positions with a stench
+     * @param world
+     */
+    public void setStench(Node[][] world)
+    {
+        //loop through the rows
+        for (int row = 0; row < world.length; row++)
+        {
+            //loop through the columns
+            for (int col = 0; col < world[row].length; col++)
+            {
+                //the position has the Wumpus
+                if (world[row][col].isWumpus())
+                {
+                    world[row][col].setStench();
+
+                    /* mark the (viable) adjacent Nodes with a Stench */
+                    //North
+                    if (row > 0)
+                    {
+                        world[row-1][col].setStench();
+                    }
+
+                    //East
+                    if (col < world.length - 1)
+                    {
+                        world[row][col+1].setStench();
+                    }
+
+                    //South
+                    if (row < world.length - 1)
+                    {
+                        world[row+1][col].setStench();
+                    }
+
+                    //West
+                    if (col > 0)
+                    {
+                        world[row][col-1].setStench();
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Method to mark the Gold's position with glitter
+     * @param world
+     */
+    public void setGlitter(Node[][] world)
+    {
+        //loop through the rows
+        for (int row = 0; row < world.length; row++)
+        {
+            //loop through the columns
+            for (int col = 0; col < world[row].length; col++)
+            {
+                //the position has the Gold
+                if (world[row][col].isGold())
+                {
+                    world[row][col].setGlitter(true);
+                }
+            }
+        }
+    }
+
+    /**
      * Method to randomly place Wumpus
      * @param map
      * @param size

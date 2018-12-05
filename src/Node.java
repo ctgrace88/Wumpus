@@ -96,7 +96,7 @@ public class Node {
     /**
      * Method to set whether a position has a Breeze
      */
-    public void setBreeze() { stench = true; }
+    public void setBreeze() { breeze = true; }
 
     /**
      * Method to set whether a position has a Glitter
@@ -151,6 +151,6 @@ public class Node {
     @Override
     public String toString()
     {
-        return "Gold: " + gold + ", Wumpus: " + wumpus + ", Pit: " + pit;
+        return "Gold: " + gold + ", Wumpus: " + wumpus + ", Pit: " + pit + ", Glitter: " + glitter + ", Breeze: " + breeze + ", Stench: " + stench;
     }
 }

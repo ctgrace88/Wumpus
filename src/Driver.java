@@ -21,6 +21,11 @@ public class Driver {
         System.out.println();
         newMap.printWorld(map4);
 
+        //set breezes, stenches, glitter
+        newMap.setBreeze(map4);
+        newMap.setStench(map4);
+        newMap.setGlitter(map4);
+
         //attempt to solve the generated world
         //agent4.solve();
 
