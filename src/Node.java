@@ -65,4 +65,14 @@ public class Node {
     public boolean getVisited() { return visited; }
 
     public int getDanger() { return danger; }
+
+
+    /**
+     *
+     */
+    @Override
+    public String toString()
+    {
+        return "Gold: " + gold + ", Wumpus: " + wumpus + ", Pit: " + pit;
+    }
 }
