@@ -1,12 +1,23 @@
+/**
+ * Class to generate a map (world) for the agent to attempt a solution at
+ */
+
 import java.util.Random;
 
 public class Map {
 
+    /**
+     * Constructor
+     */
     public Map(){
 
     }
 
-    // Build map of specified size
+    /**
+     * Method to build map of specified size
+     * @param size
+     * @return
+     */
     public Node[][] buildMap(int size){
         Random rand = new Random();
         Node[][] map = new Node[size][size];
@@ -36,7 +47,12 @@ public class Map {
         return map;
     }
 
-    // Randomly place wumpus
+    /**
+     * Method to randomly place Wumpus
+     * @param map
+     * @param size
+     * @return
+     */
     private Node[][] placeWumpus(Node[][] map, int size){
         boolean wumpusPlaced = false;
         Random rand = new Random();
@@ -57,7 +73,12 @@ public class Map {
         return map;
     }
 
-    // Randomly place gold
+    /**
+     * Method to randomly place gold
+     * @param map
+     * @param size
+     * @return
+     */
     private Node[][] placeGold(Node[][] map, int size){
         boolean goldPlaced = false;
         Random rand = new Random();

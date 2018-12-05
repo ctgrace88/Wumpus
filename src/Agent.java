@@ -1,4 +1,11 @@
+/**
+ * Class to represent the Agent's progress throughout the world (map)
+ */
+
 public class Agent {
+    /**
+     * Instance variables
+     */
     private char direction;     // {N, E, S, W}
     private int xCoord;
     private int yCoord;
@@ -9,6 +16,12 @@ public class Agent {
     private int score;
     private boolean dead;       // False = alive, True = dead
 
+    /**
+     * Constructor
+     * @param x the x coordinate
+     * @param y the y coordinate
+     * @param map the world represented by a 2d Node array
+     */
     public Agent(int x, int y, Node[][] map){
         xCoord = x;
         yCoord = y;
@@ -19,9 +32,15 @@ public class Agent {
         dead = false;
     }
 
-    public void solve(){
+    /**
+     * Method to attempt to find a solution to the generated world
+     * Not all generated worlds will be solvable
+     */
+    public void solve()
+    {
         // While agent is alive
-        while (!dead) {
+        while (!dead)
+        {
             checkEnvironment();
             decision();
         }
@@ -30,13 +49,18 @@ public class Agent {
         analysis();
     }
 
-    // Agent checks and updates it's map of the environment
-    private void checkEnvironment(){
+    /**
+     * Method to handle the Agent checking and updating it's map of the environment
+     */
+    private void checkEnvironment()
+    {
         // Sets agents current node to visited.
-        known[yCoord][xCoord] = new Node(false, false, false, true);
+        //known[yCoord][xCoord] = new Node(false, false, false, true);
+        known[yCoord][xCoord].setVisited();
 
         // Sets agents node to glitter if gold is in it.
-        if (map[yCoord][xCoord].isGold()){
+        if (map[yCoord][xCoord].isGold())
+        {
             known[yCoord][xCoord].setGlitter(true);
         }
 
@@ -79,6 +103,9 @@ public class Agent {
         }
     }
 
+    /**
+     * Method to determine which square to move to next
+     */
     private void decision(){
         int min = 999999999;    // lowest danger level
         char dir;               // direction of lowest danger level
@@ -147,7 +174,9 @@ public class Agent {
         ///////////***************************///////***************//////////**
     }
 
-    // Print out ending messages
+    /**
+     * Method to print out ending messages
+     */
     private void analysis(){
         System.out.println("Game Finished:");
         System.out.print("Agent Status: ");
@@ -170,7 +199,10 @@ public class Agent {
         System.out.println("Cells Entered: " + getVisited());
     }
 
-    // Return number of cells visited
+    /**
+     * Method to return the number of cells visited
+     * @return an integer value
+     */
     private int getVisited(){
         int numVisited = 0;
         for (int i = 0; i < known.length; i++){
@@ -182,14 +214,25 @@ public class Agent {
         return numVisited;
     }
 
+    /**
+     * Method to set the x coordinate
+     * @param newX the new x coordinate integer value
+     */
     private void setX(int newX){
         xCoord = newX;
     }
 
+    /**
+     * Method to set the y coordinate
+     * @param newY the new y coordinate integer value
+     */
     private void setY(int newY){
         yCoord = newY;
     }
 
+    /**
+     * Methdo to move the agent forward in the direction they are facing
+     */
     private void forward(){
         // Costs 1 point to move
         score++;
@@ -208,6 +251,9 @@ public class Agent {
         }
     }
 
+    /**
+     * Method to rotate the agent left 90 degrees
+     */
     private void turnLeft(){
         if(direction == 'N'){
             direction = 'W';
@@ -223,6 +269,9 @@ public class Agent {
         }
     }
 
+    /**
+     * Method to rotate the agent right 90 degrees
+     */
     private void turnRight(){
         if(direction == 'N'){
             direction = 'E';
@@ -238,6 +287,9 @@ public class Agent {
         }
     }
 
+    /**
+     * Method to retrieve the gold from the current square
+     */
     private void getGold(){
         // Pick up gold
         gold = true;
@@ -251,7 +303,11 @@ public class Agent {
         }
     }
 
-    // Return true if Wumpus killed, otherwise false
+    /**
+     * Method to try and shoot the Wumpus
+     * @return a boolean value
+     * true for killed i.e. heard a scream, false otherwise
+     */
     private boolean shoot(){
         arrow = false;
         int x = xCoord;
@@ -304,6 +360,9 @@ public class Agent {
         return false;
     }
 
+    /**
+     * Method to remove the Wumpus from the world
+     */
     private void removeWumpus(){
         for (int i = 0; i < known.length; i++) {
             for (int j = 0; j < known.length; j++) {
@@ -312,14 +371,25 @@ public class Agent {
         }
     }
 
+    /**
+     * Method to update the score
+     * @param add
+     */
     private void changeScore(int add){
         score += add;
     }
 
+    /**
+     * Method to return the score of the current solution
+     * @return an integer value
+     */
     private int getScore(){
         return score;
     }
 
+    /**
+     * Method to...
+     */
     private void initKnown(){
 
     }
