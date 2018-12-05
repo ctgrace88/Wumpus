@@ -30,6 +30,8 @@ public class Agent {
         arrow = true;
         gold = false;
         dead = false;
+        int worldSize = map.length;
+        known = new Node[worldSize][worldSize];
     }
 
     /**

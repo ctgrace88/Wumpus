@@ -27,7 +27,7 @@ public class Driver {
         newMap.printWorld(map4);
 
         //attempt to solve the generated world
-        //agent4.solve();
+        agent4.solve();
 
 
         //map = newMap.buildMap(5);
