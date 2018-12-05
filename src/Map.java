@@ -249,10 +249,27 @@ public class Map {
                         switch (i)
                         {
                             case 0:
-                                sense = "\tStench: ";
+                                //handling different boolean value lengths
+                                if (world[n][k].getStench())
+                                {
+                                    sense = "\tStench: " + world[n][k].getStench() + "          ";
+                                }
+                                else
+                                {
+                                    sense = "\tStench: " + world[n][k].getStench() + "         ";
+                                }
+                                //sense = "\tStench: ";
                                 break;
                             case 1:
-                                sense = "\tBreeze: ";
+                                if (world[n][k].getBreeze())
+                                {
+                                    sense = "\tBreeze: " + world[n][k].getBreeze() + "          ";
+                                }
+                                else
+                                {
+                                    sense = "\tBreeze: " + world[n][k].getBreeze() + "         ";
+                                }
+                                //sense = "\tBreeze: ";
                                 break;
                             case 2:
                                 //handling different boolean value lengths
